@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/probolinggo-dev/api.probolinggodev.org/issues"
   },
-  "homepage": "https://github.com/probolinggo-dev/api.probolinggodev.org#readme"
+  "homepage": "https://github.com/probolinggo-dev/api.probolinggodev.org#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
 }
