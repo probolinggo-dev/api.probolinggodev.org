@@ -3,4 +3,4 @@ const app = express();
 
 app.get("/", (req, res) => res.send("Halo arek-arek probolinggo!"));
 
-app.listen(3000, () => console.log("Server mendengarkan pada port 3000!"));
+app.listen(9012, () => console.log("Server mendengarkan pada port 9012!"));
