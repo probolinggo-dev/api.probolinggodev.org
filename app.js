@@ -17,4 +17,9 @@ app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
 app.use('/posts', postRoutes);
 
+//package node-mon adalah package untuk reload setiap kali ada perubahan
+//di source code, sehingga ketika server berjalan dan ada perubahan script
+//atau yang lainnya di dalam project node tersebut, akan ditangkap oleh
+//node-mon
+
 module.exports = app;
