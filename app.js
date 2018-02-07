@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const productRoutes = require('./API/routes/products');
 const orderRoutes = require('./API/routes/orders');
+const postRoutes = require('./API/routes/posts');
 
 /**
  * Initial server up
@@ -14,5 +15,6 @@ const orderRoutes = require('./API/routes/orders');
 
 app.use('/products', productRoutes);
 app.use('/orders', orderRoutes);
+app.use('/posts', postRoutes);
 
 module.exports = app;
