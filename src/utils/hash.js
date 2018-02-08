@@ -16,7 +16,7 @@ const create = (str) => {
       reject(err);
     }
   });
-}
+};
 
 const validate = (str = '', hash = '') => {
   return new Promise(async (resolve, reject) => {
@@ -30,10 +30,10 @@ const validate = (str = '', hash = '') => {
     } catch (err) {
       reject (err);
     }
-  })
-}
+  });
+};
 
 module.exports = {
   create,
   validate,
-}
+};

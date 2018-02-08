@@ -19,8 +19,8 @@ const create = (input) => {
       reject(err);
     }
   });
-}
+};
 
 module.exports = {
   create,
-}
+};
