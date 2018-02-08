@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/probolinggo-dev/api.probolinggodev.org#readme",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "ramda": "^0.25.0"
   },
