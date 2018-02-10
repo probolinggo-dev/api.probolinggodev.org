@@ -4,10 +4,12 @@ const hash = require ('../utils/hash.js');
 const create = (input) => {
   return new Promise(async (resolve, reject) => {
     try {
-      const {password} = input;
+      const {password, email} = input;
       const passwordHash = await hash.create(password);
+      const tokenValidation = await hash.create(email);
       const payload = Object.assign({}, input, {
-        password: passwordHash
+        password: passwordHash,
+        tokenValidation,
       });
       const User = new Users(payload);
       User.save((err, data) => {
