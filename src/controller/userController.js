@@ -14,8 +14,13 @@ const create = (input) => {
       const User = new Users(payload);
       User.save((err, data) => {
         if (err) reject(err);
-
-        resolve(data);
+        const {_id, username, email, name} = data;
+        resolve({
+          _id,
+          username,
+          email,
+          name
+        });
       });
     } catch (err) {
       reject(err);
