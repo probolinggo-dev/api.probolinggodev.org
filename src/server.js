@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 const {dbname} = require('../config');
 
 // import routes
-const userRoute = require('./routes/userRoute');
+const routes = require('./routes');
 
 /* connect into database */
 mongoose.connect(`mongodb://localhost/${dbname}`);
@@ -16,6 +16,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get('/', (req, res) => res.send('hello'));
 
 /* routing */
-app.use('/user', userRoute);
+app.use(routes);
 
 module.exports = app;
