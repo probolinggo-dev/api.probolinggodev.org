@@ -4,7 +4,7 @@ this document describes api.probolinggodev.org roadmap, honestly, we Initiate th
 So don't be hesitate to contribute to this project, you are free to modify this roadmap.
 
 ### Phase 1
-- Add authentication layer using JWT
+- ~~Add authentication layer using JWT~~
 - get information about earthquake
 - Integrate with google drive, So everyone can access our assets like free ebook / syllabus
 - quotes crud
