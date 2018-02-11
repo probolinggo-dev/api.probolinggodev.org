@@ -33,9 +33,18 @@ class Router {
 
     r(route, middlewares, async (req, res) => {
       try {
-        const data = await action(req.body);
+        const data = await action(req);
+
+        if (data.code) {
+          return res.status(data.code).json(data);
+        }
+
         return res.json(data);
       } catch (err) {
+        if (err.code) {
+          return res.status(err.code).json(err);
+        }
+
         return res.status(500).json({
           message: 'Something went wrong!'
         });
