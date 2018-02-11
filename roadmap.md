@@ -10,6 +10,7 @@ So don't be hesitate to contribute to this project, you are free to modify this 
 - quotes crud
 - news scrapper
 - get unsplash images
+- crud article
 
 ### Phase 2
 - fill this field
