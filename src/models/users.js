@@ -1,4 +1,5 @@
 const Model = require('./BaseModel');
+const {Schema} = require('mongoose');
 const UserModel = new Model({
   schema: {
     email: {type: String, unique: true, required: true},
@@ -6,7 +7,8 @@ const UserModel = new Model({
     name: {type: String, required: true},
     password: {type: String, required: true},
     tokenValidation: {type: String, required: true},
-    isValidated: {type: Boolean, default: false}
+    isValidated: {type: Boolean, default: false},
+    quotes: [{type: Schema.Types.ObjectId, ref: 'Quote'}],
   },
   name: 'User'
 });
