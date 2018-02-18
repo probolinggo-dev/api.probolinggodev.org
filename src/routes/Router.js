@@ -1,4 +1,6 @@
 const express = require('express');
+const expressValidator = require('express-validator');
+const R = require('ramda');
 const router = express.Router();
 
 class Router {
@@ -33,6 +35,8 @@ class Router {
 
     r(route, middlewares, async (req, res) => {
       try {
+        // inject express-validator into req
+        expressValidator()(req, {}, () => {});
         const data = await action(req);
 
         if (data.code) {
@@ -41,12 +45,12 @@ class Router {
 
         return res.json(data);
       } catch (err) {
-        if (err.code) {
+        if (err.code && String(err.code).length <= 3) {
           return res.status(err.code).json(err);
         }
 
-        return res.status(500).json({
-          message: 'Something went wrong!'
+        return res.status(401).json({
+          message: R.or(err.errmsg, 'Something went wrong!'),
         });
       }
     });
