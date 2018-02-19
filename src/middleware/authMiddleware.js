@@ -7,6 +7,8 @@ const authMiddleware = (req, res, next) => {
 
   jwt.verify(token, config.secretKey, (err, decoded) => {
     if (err) return res.status(401).json({code: 401, message: 'authentication failed'});
+    const {isValidated} = decoded;
+    if (!isValidated) return res.status(401).json({code: 401, message: 'you have to validate your email address!'});
 
     req.decoded = decoded;
     next();
