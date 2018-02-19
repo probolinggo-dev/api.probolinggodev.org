@@ -33,7 +33,7 @@
     "ramda": "^0.25.0"
   },
   "devDependencies": {
-    "eslint": "^4.17.0",
+    "eslint": "^4.18.0",
     "mocha": "^5.0.1",
     "nodemon": "^1.14.12",
     "supertest": "^3.0.0"
