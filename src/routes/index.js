@@ -8,6 +8,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 const userController = require('../controller/userController');
 const quoteController = require('../controller/quoteController');
 
+router.get('/user/settings/validate', userController.validate);
 router.post('/user', userController.create);
 router.post('/auth', userController.auth);
 
