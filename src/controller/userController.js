@@ -79,6 +79,7 @@ class UserController {
           _id,
           username,
           password: hashedPassword,
+          isValidated,
         } = data;
         try {
           const isValid = hash.validate(password, hashedPassword);
@@ -86,7 +87,8 @@ class UserController {
           const token = auth.generateToken({
             _id,
             username,
-            email
+            email,
+            isValidated
           });
           return resolve({
             code: 200,

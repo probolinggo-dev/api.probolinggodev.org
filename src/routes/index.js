@@ -12,6 +12,9 @@ router.post('/user', userController.create);
 router.post('/auth', userController.auth);
 
 // quotes
+router.get('/quote/search/:keyword?', quoteController.search);
+router.get('/quote/random', quoteController.random);
+router.get('/quote/:id', quoteController.get);
 router.post('/quote', quoteController.create, authMiddleware);
 
 module.exports = router.create();
