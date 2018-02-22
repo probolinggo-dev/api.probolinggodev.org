@@ -8,9 +8,9 @@ So don't be hesitate to contribute to this project, you are free to modify this 
 - get information about earthquake
 - Integrate with google drive, So everyone can access our assets like free ebook / syllabus
 - quotes crud
+- crud article
 - news scrapper
 - get unsplash images
-- crud article
 
 ### Phase 2
 - fill this field
