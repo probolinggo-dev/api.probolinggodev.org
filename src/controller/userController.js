@@ -89,9 +89,19 @@ class UserController extends BaseController {
   auth(req) {
     const input = req.body;
     const {email, password} = input;
-    return new Promise((resolve, reject) => {
-      if (R.isEmpty(email)) return reject(ERR_MESSAGES.NO_EMAIL);
-      if (R.isEmpty(email)) return reject(ERR_MESSAGES.NO_PASSWORD);
+    return new Promise(async (resolve, reject) => {
+
+      // check if email or password is empty then return reject
+      req.check('email').exists();
+      req.check('password').exists();
+      const validator = await req.getValidationResult();
+      const validatorMsg = validator.mapped();
+      if (R.not(R.isEmpty(validatorMsg))) {
+        return reject({
+          code: 401,
+          message: validatorMsg,
+        });
+      }
 
       Users.findOne({email}, async (err, data) => {
         if (err) return reject(ERR_MESSAGES.USER_NOT_FOUND);

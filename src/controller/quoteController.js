@@ -5,7 +5,20 @@ class QuoteController {
   create(req) {
     const input = req.body;
     const {_id} = req.decoded;
-    return new Promise((resolve, reject) => {
+    return new Promise(async (resolve, reject) => {
+
+      // check if content or author is empty then return reject
+      req.check('content').exists();
+      req.check('author').exists();
+      const validator = await req.getValidationResult();
+      const validatorMsg = validator.mapped();
+      if (R.not(R.isEmpty(validatorMsg))) {
+        return reject({
+          code: 401,
+          message: validatorMsg,
+        });
+      }
+
       const Quote = new Quotes(Object.assign({}, input, {
         user: _id,
       }));
