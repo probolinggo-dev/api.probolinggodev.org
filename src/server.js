@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   isDevelopment
     ? morgan('dev')
-    : morgan(':id :method :url :response-time', {stream: accessLogStream})
+    : morgan('combined', {stream: accessLogStream})
 );
 
 /* routing */
