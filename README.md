@@ -1,3 +1,3 @@
 # api.probolinggodev.org
-Play, Learn, Build
+Play, Learn, Build.
 ### [Roadmap](roadmap.md)
