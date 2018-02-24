@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/probolinggo-dev/api.probolinggodev.org#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
@@ -32,6 +33,7 @@
     "handlebars": "^4.0.11",
     "jsonwebtoken": "^8.1.1",
     "mongoose": "^5.0.6",
+    "mongoose-paginate": "^5.0.3",
     "mongoose-timestamp": "^0.6.0",
     "morgan": "^1.9.0",
     "ramda": "^0.25.0",
