@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const R = require('ramda');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const fs = require('fs');
 const path = require('path');
 const morgan = require('morgan');
+const R = require('ramda');
 const rfs = require('rotating-file-stream');
 const logDir = path.join(process.cwd(), 'logs');
 const {dbname, secretKey, unsplashClientId, workers} = require('../config');
@@ -25,6 +26,7 @@ const accessLogStream = rfs('access.log', {
   path: logDir,
 });
 
+app.use(cors());
 /* set secret key */
 app.set('secretKey', secretKey);
 /* connect into database */
