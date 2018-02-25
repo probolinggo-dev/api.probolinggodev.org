@@ -7,6 +7,7 @@ const UnsplashModel = new Model({
     color: {type: String},
     description: {type: String},
     orientation: {type: String},
+    curated: {type: Boolean, default: false},
     urls: {
       raw: {type: String},
       full: {type: String},
