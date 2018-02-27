@@ -29,7 +29,7 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.2",
-    "express-validator": "^5.0.1",
+    "express-validator": "^5.0.2",
     "gmail-send": "^1.2.13",
     "handlebars": "^4.0.11",
     "jsonwebtoken": "^8.1.1",
