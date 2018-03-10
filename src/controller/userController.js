@@ -1,5 +1,6 @@
 const BaseController = require('./BaseController');
 const Users = require('../models/users');
+const UserMeta = require('../models/userMeta');
 const hash = require ('../utils/hash.js');
 const auth = require('../utils/auth');
 const config = require('../../config');
@@ -83,6 +84,58 @@ class UserController extends BaseController {
       } catch (err) {
         return reject(err);
       }
+    });
+  }
+
+  update(req) {
+    const {_id} = req.decoded;
+    return new Promise((resolve, reject) => {
+      UserMeta.findOne({user: _id}, (err, meta) => {
+        if (err) return reject({});
+
+        if (R.isNil(meta)) {
+          const Meta = new UserMeta({
+            user: _id,
+            ...req.body
+          });
+          return Meta.save((err, data) => {
+            if (err) return reject({});
+            const {_id: metaId} = data;
+            Users.findById(_id, (errUser, user) => {
+              if (errUser) return reject({});
+              Object.assign(user, {
+                meta: metaId,
+              });
+
+              user.save((errSaveUser) => {
+                if (errSaveUser) return reject({});
+
+                return resolve({message: 'success'});
+              });
+            });
+          });
+        }
+
+        Object.assign(meta, req.body);
+        meta.save((err, data) => {
+          if (err) return reject({});
+
+          return resolve(data);
+        });
+      });
+    });
+  }
+
+  info(req) {
+    const {_id} = req.decoded;
+    return new Promise((resolve, reject) => {
+      Users.findById(_id)
+        .select('-password -tokenValidation -quotes')
+        .populate({path: 'meta', select: '-_id -user -updatedAt -createdAt -__v'})
+        .exec((err, user) => {
+          if (err) return reject({code: 520, message: 'Unknown Error'});
+          return resolve(user);
+        });
     });
   }
 
