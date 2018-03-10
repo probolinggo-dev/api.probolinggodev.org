@@ -143,6 +143,7 @@ class UserController extends BaseController {
             {user: _id},
             {
               select: '-r',
+              sort: {updatedAt: -1},
               page: R.or(page, 1),
               limit: R.or(limit, 10)
             }
