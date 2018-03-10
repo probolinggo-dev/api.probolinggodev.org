@@ -15,6 +15,7 @@ router.get('/unsplash', unsplashController.get);
 // user
 router.get('/user/settings/validate', userController.validate);
 router.get('/user/info', userController.info, authMiddleware);
+router.get('/user/:username', userController.info);
 router.patch('/user', userController.update, authMiddleware);
 router.post('/user', userController.create);
 router.post('/auth', userController.auth);

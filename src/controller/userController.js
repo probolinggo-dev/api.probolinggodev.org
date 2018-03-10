@@ -127,15 +127,26 @@ class UserController extends BaseController {
   }
 
   info(req) {
-    const {_id} = req.decoded;
+    const username = R.pathOr(null, ['params','username'], req);
+    const _id = R.pathOr(null, ['decoded', '_id'], req);
     return new Promise((resolve, reject) => {
-      Users.findById(_id)
-        .select('-password -tokenValidation -quotes')
-        .populate({path: 'meta', select: '-_id -user -updatedAt -createdAt -__v'})
-        .exec((err, user) => {
-          if (err) return reject({code: 520, message: 'Unknown Error'});
-          return resolve(user);
-        });
+      if (R.isNil(username)) {
+        Users.findById(_id)
+          .select('-password -tokenValidation -quotes')
+          .populate({path: 'meta', select: '-_id -user -updatedAt -createdAt -__v'})
+          .exec((err, user) => {
+            if (err) return reject({code: 520, message: 'Unknown Error'});
+            return resolve(user);
+          });
+      } else {
+        Users.findOne({username})
+          .select('-password -tokenValidation -quotes')
+          .populate({path: 'meta', select: '-_id -user -updatedAt -createdAt -__v'})
+          .exec((err, user) => {
+            if (err) return reject({code: 520, message: 'Unknown Error'});
+            return resolve(user);
+          });
+      }
     });
   }
 
