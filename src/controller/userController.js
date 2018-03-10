@@ -1,5 +1,6 @@
 const BaseController = require('./BaseController');
 const Users = require('../models/users');
+const Quotes = require('../models/quotes');
 const UserMeta = require('../models/userMeta');
 const hash = require ('../utils/hash.js');
 const auth = require('../utils/auth');
@@ -123,6 +124,44 @@ class UserController extends BaseController {
           return resolve(data);
         });
       });
+    });
+  }
+
+  quotes(req) {
+    const {username} = req.params;
+    const page = parseInt(R.pathOr(1, ['query','page'], req));
+    let limit = parseInt(R.pathOr(10, ['query','page_page'], req));
+    limit = limit > 30 ? 30 : limit;
+    return new Promise(async (resolve, reject) => {
+      try {
+        const user = await Users.findOne({username})
+          .select('-r -password -tokenValidation -isValidated -quotes')
+          .populate({path: 'meta', select: '-r'});
+        const {_id} = user;
+        const result = await Quotes
+          .paginate(
+            {user: _id},
+            {
+              select: '-r',
+              page: R.or(page, 1),
+              limit: R.or(limit, 10)
+            }
+          );
+        return resolve({
+          ...result,
+          ...{
+            docs: result.docs.map(item => ({
+              quote: item._doc,
+              user: user._doc,
+            }))
+          }
+        });
+      } catch (err) {
+        return reject({
+          code: 500,
+          message: 'Aku lelah kak'
+        });
+      }
     });
   }
 
