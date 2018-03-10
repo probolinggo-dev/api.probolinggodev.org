@@ -1841,6 +1841,10 @@ mongoose-paginate@^5.0.3:
   dependencies:
     bluebird "3.0.5"
 
+mongoose-random@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/mongoose-random/-/mongoose-random-0.1.1.tgz#9ab163f11d4644f2f1b0562b2ebe94b05b201f7a"
+
 mongoose-timestamp@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/mongoose-timestamp/-/mongoose-timestamp-0.6.0.tgz#da54110ca8e6d4c2b9957a0366836c362ed272be"

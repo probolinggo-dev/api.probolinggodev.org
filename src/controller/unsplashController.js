@@ -19,6 +19,26 @@ class UnsplashController extends BaseController {
       }
     });
   }
+
+  random() {
+    return new Promise((resolve, reject) => {
+      Unsplash.find({orientation: 'lanscape'}).count().exec((err, count) => {
+        if (err) return reject(err);
+
+        const random = Math.floor(Math.random() * count);
+        Unsplash.findOne({orientation: 'lanscape'})
+          .skip(random)
+          .exec((err, data) => {
+            if (err) return reject({
+              code: 404,
+              message: 'image not found!',
+            });
+
+            return resolve(data);
+          });
+      });
+    });
+  }
 }
 
 module.exports = new UnsplashController();

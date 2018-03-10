@@ -10,6 +10,7 @@ const quoteController = require('../controller/quoteController');
 const unsplashController = require('../controller/unsplashController');
 
 // unsplash
+router.get('/unsplash/random', unsplashController.random);
 router.get('/unsplash', unsplashController.get);
 
 // user
