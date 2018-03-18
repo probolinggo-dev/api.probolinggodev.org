@@ -30,7 +30,7 @@ app.use(cors());
 /* set secret key */
 app.set('secretKey', secretKey);
 /* connect into database */
-mongoose.connect(`mongodb://localhost/${dbname}`);
+mongoose.connect(`mongodb://mongo/${dbname}`);
 
 /* middleware */
 app.use(bodyParser.json());
