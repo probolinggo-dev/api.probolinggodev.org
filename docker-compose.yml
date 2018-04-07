@@ -1,21 +1,28 @@
 version: "2"
 services:
   app:
-    container_name: app
+    networks:
+      - backend
+    container_name: edge
     restart: always
     build:
       context: .
       dockerfile: ./docker/web.dockerfile
     ports:
-      - "3000:8000"
+      - "1995:8000"
     links:
       - mongo
   mongo:
-    container_name: mongo
+    networks:
+      - backend
+    container_name: edge_db
     build:
       context: .
       dockerfile: ./docker/mongo.dockerfile
     volumes:
       - ./data:/data/db
     ports:
-      - "27017:27017"
+      - "1996:27017"
+networks:
+  backend:
+    driver: bridge
