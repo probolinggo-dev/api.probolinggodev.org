@@ -9,7 +9,7 @@ services:
       context: .
       dockerfile: ./docker/web.dockerfile
     ports:
-      - "1995:8000"
+      - "2000:8000"
     links:
       - mongo
   mongo:
@@ -22,7 +22,7 @@ services:
     volumes:
       - ./data:/data/db
     ports:
-      - "1996:27017"
+      - "2001:27017"
 networks:
   backend:
     driver: bridge
