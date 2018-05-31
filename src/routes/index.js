@@ -8,6 +8,7 @@ const authMiddleware = require('../middleware/authMiddleware');
 const userController = require('../controller/userController');
 const quoteController = require('../controller/quoteController');
 const unsplashController = require('../controller/unsplashController');
+const telegramBotController = require('../controller/telegramBotController');
 
 // unsplash
 router.get('/unsplash/random', unsplashController.random);
@@ -27,5 +28,7 @@ router.get('/quote/search/:keyword?', quoteController.search);
 router.get('/quote/random', quoteController.random);
 router.get('/quote/:id', quoteController.get);
 router.post('/quote', quoteController.create, authMiddleware);
+
+router.get('/telegram/latest-urls', telegramBotController.getCurrentUrls);
 
 module.exports = router.create();
