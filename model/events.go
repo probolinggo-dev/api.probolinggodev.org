@@ -17,5 +17,4 @@ type Event struct {
 	Link        string
 	Latitude    string
 	Longitude   string
-	DeletedAt   *time.Time
 }

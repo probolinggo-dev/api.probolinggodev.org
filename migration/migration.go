@@ -8,7 +8,7 @@ import (
 	"github.com/probolinggo-dev/api.probolinggodev.org/model"
 )
 
-func migrate(db *gorm.DB) {
+func Migrate(db *gorm.DB) {
 	fmt.Println("Migrating database...")
 
 	db.AutoMigrate(&model.Event{})

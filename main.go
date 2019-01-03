@@ -7,6 +7,7 @@ import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"github.com/probolinggo-dev/api.probolinggodev.org/config"
+	"github.com/probolinggo-dev/api.probolinggodev.org/migration"
 )
 
 func main() {
@@ -28,6 +29,7 @@ func main() {
 		fmt.Println(err)
 		return
 	}
+	migration.Migrate(db)
 	router := gin.Default()
 	router.GET("/", func(c *gin.Context) {
 		c.JSON(200, gin.H{
