@@ -47,5 +47,6 @@ func LoadDBSettings() (db Database, err error) {
 	var config Config
 	json.Unmarshal(byteVal, &config)
 	db = config.Database
+	fmt.Println(db)
 	return
 }

@@ -18,10 +18,10 @@ func main() {
 
 	db, err := gorm.Open("mysql",
 		dbsettings.User+":"+
-			dbsettings.Password+"@"+
+			dbsettings.Password+"@tcp("+
 			dbsettings.Host+":"+
 			dbsettings.Port+
-			"/"+dbsettings.DBName+
+			")/"+dbsettings.DBName+
 			"?charset=utf8&parseTime=True&loc=Local")
 	defer db.Close()
 	if err != nil {
