@@ -10,6 +10,9 @@ func createRoutes() *gin.Engine {
 	rEvent := router.Group("events")
 	{
 		rEvent.GET("/", getEvents)
+		rEvent.GET("/:id", getEvent)
+
 	}
+
 	return router
 }
