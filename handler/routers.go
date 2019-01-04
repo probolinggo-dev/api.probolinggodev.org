@@ -11,7 +11,9 @@ func createRoutes() *gin.Engine {
 	{
 		rEvent.GET("/", getEvents)
 		rEvent.GET("/:id", getEvent)
-
+		rEvent.POST("/", createEvent)
+		rEvent.PUT("/:id", updateEvent)
+		rEvent.DELETE("/:id", deleteEvent)
 	}
 
 	return router

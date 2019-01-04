@@ -29,3 +29,29 @@ func getEvent(c *gin.Context) {
 		c.JSON(200, event)
 	}
 }
+
+func createEvent(c *gin.Context) {
+	var event model.Event
+	c.BindJSON(&event)
+	db.Create(&event)
+	c.JSON(200, event)
+}
+
+func updateEvent(c *gin.Context) {
+	var event model.Event
+	id := c.Params.ByName("id")
+	if err := db.Where("id = ?", id).First(&event).Error; err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	}
+	c.BindJSON(&event)
+	db.Save(&event)
+	c.JSON(200, event)
+}
+func deleteEvent(c *gin.Context) {
+	id := c.Params.ByName("id")
+	var event model.Event
+	d := db.Where("id = ?", id).Delete(&event)
+	fmt.Println(d)
+	c.JSON(200, gin.H{"Eventid#" + id: "is deleted"})
+}
