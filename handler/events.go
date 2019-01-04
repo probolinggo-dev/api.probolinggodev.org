@@ -19,3 +19,13 @@ func getEvents(c *gin.Context) {
 	}
 
 }
+func getEvent(c *gin.Context) {
+	var event model.Event
+	id := c.Params.ByName("id")
+	if err := db.Where("id = ?", id).First(&event).Error; err != nil {
+		c.AbortWithStatus(404)
+		fmt.Println(err)
+	} else {
+		c.JSON(200, event)
+	}
+}
